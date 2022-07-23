@@ -10,3 +10,8 @@ diamonds%>%
   filter(price > 7000 & price < 10000)%>%
   arrange(desc(carat))%>%
   slice(1:20)
+
+diamondsdt <- as.data.table(diamonds)
+
+diamondsdt[cut == "Premium" & price > 7000 & price < 10000, .(carat, cut, price), 
+           order(-carat)] [c(1:20)]
